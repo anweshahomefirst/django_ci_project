@@ -1,0 +1,47 @@
+# .github/workflows/ci.yml
+name: Django+React CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # --- Backend (Django) Checks ---
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements.txt
+
+      - name: Run Backend Linting (Flake8)
+        run: flake8 backend/
+      
+      - name: Run Backend Tests
+        run: python backend/manage.py test
+
+      # --- Frontend (React) Checks ---
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Node Dependencies
+        run: npm install --prefix frontend
+
+      - name: Run Frontend Linting (ESLint)
+        run: npm run lint --prefix frontend
+      
+      - name: Run Frontend Tests
+        run: npm test -- --watchAll=false --prefix frontend
