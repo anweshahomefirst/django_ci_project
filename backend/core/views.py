@@ -6,8 +6,6 @@ def index(request):
     return HttpResponse("Hello, CI pipeline!")
 
 
-# --- ADD THE NEW FUNCTION BELOW ---
-
 def user_profile(request):
     # MISTAKE 1: An unused variable. A common "code smell".
     # user_id = request.GET.get('id')
