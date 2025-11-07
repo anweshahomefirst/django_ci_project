@@ -11,5 +11,6 @@ class CoreViewTests(TestCase):
         """
         url = reverse('index')
         response = self.client.get(url)
+
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Hello, CI pipeline!")
