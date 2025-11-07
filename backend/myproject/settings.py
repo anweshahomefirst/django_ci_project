@@ -57,7 +57,10 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '..', 'frontend', 'build'), os.path.join(BASE_DIR, 'core', 'templates')],
+        'DIRS': [
+            os.path.join(BASE_DIR, '..', 'frontend', 'build'),
+            os.path.join(BASE_DIR, 'core', 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,7 +123,9 @@ USE_TZ = True
 # STATIC_URL = 'static/'
 # Tell Django where to find React's build folder
 STATIC_URL = '/static/'
-FRONTEND_STATIC_ROOT = os.path.join(BASE_DIR, '..', 'frontend', 'build', 'static')
+FRONTEND_STATIC_ROOT = os.path.join(
+    BASE_DIR, '..', 'frontend', 'build', 'static'
+)
 STATICFILES_DIRS = []
 if os.path.exists(FRONTEND_STATIC_ROOT):
     STATICFILES_DIRS.append(FRONTEND_STATIC_ROOT)
