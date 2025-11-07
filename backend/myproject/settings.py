@@ -120,9 +120,10 @@ USE_TZ = True
 # STATIC_URL = 'static/'
 # Tell Django where to find React's build folder
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '..', 'frontend', 'build', 'static')
-]
+FRONTEND_STATIC_ROOT = os.path.join(BASE_DIR, '..', 'frontend', 'build', 'static')
+STATICFILES_DIRS = []
+if os.path.exists(FRONTEND_STATIC_ROOT):
+    STATICFILES_DIRS.append(FRONTEND_STATIC_ROOT)
 # Tell Whitenoise where to find the static files
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 

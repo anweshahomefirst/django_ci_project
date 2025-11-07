@@ -24,5 +24,6 @@ urlpatterns = [
     # Add API paths here, e.g., path('api/v1/', include('api.urls'))
 
     # This catch-all route will serve the React app
+    path('', TemplateView.as_view(template_name='index.html'), name='index'),
     re_path(r'^.*', TemplateView.as_view(template_name='index.html')),
 ]
